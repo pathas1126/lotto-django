@@ -1,0 +1,5 @@
+# python virtual environment
+lottoenv/
+
+# python cache
+__pycache__/
