@@ -13,9 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from lotto.game.views import CreateCustomLottoGame, LottoRandomGameView, LottoRandomGamesView, LottoWinningGameView
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+
+lotto_game_patterns = [
+    path('winning', LottoWinningGameView.as_view()),
+    path('random', LottoRandomGameView.as_view()),
+    path('custom', CreateCustomLottoGame.as_view())
+]
+
+lotto_games_patterns = [
+    path('random', LottoRandomGamesView.as_view())
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include([
+        path('lotto/game/', include(lotto_game_patterns)),
+        path('lotto/games/', include(lotto_games_patterns)),
+    ]))
 ]

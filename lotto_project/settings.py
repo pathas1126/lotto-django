@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lotto'
+    'lotto',
+
+    # Additional App
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -50,9 +54,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Additional Middleware
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
-ROOT_URLCONF = 'lotto.urls'
+# CORS settings
+CORS_ORIGIN_WHITELIST = ['http://172.25.25.102:3000','http://localhost:3000']
+CORS_ALLOW_CREDENTIALS = True
+
+ROOT_URLCONF = 'lotto_project.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lotto.wsgi.application'
+WSGI_APPLICATION = 'lotto_project.wsgi.application'
 
 
 # Database
